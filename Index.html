@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva</title>
+    <style>
+        body {
+            font-family: "Playfair Display", serif;
+            text-align: center;
+            background-color: #ffffff;
+            color: #7a8e74;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .countdown {
+            font-size: 2em;
+            font-weight: bold;
+            display: flex;
+            gap: 10px;
+        }
+        .countdown span {
+            padding: 10px;
+            border: 1px solid #7a8e74;
+            border-radius: 5px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .labels {
+            display: flex;
+            gap: 10px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <span id="days">--</span> :
+        <span id="hours">--</span> :
+        <span id="minutes">--</span> :
+        <span id="seconds">--</span>
+    </div>
+    <div class="labels">
+        <span>Días</span>
+        <span>Horas</span>
+        <span>Minutos</span>
+        <span>Segundos</span>
+    </div>
+    
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date("June 7, 2025 11:00:00").getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
